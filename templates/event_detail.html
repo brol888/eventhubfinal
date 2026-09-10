@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ event.title }}</h2>
+
+    <p><strong>{{ event.short_description }}</strong></p>
+
+    <p>{{ event.full_description }}</p>
+
+    <p>Location: {{ event.location }}</p>
+    {% if weather %}
+    <p>Weather in {{ event.location }}: {{ weather.temp }}°C, wind {{ weather.windspeed }} km/h</p>
+    {% else %}
+    <p>Weather information is currently unavailable.</p>
+    {% endif %}
+    <p>Date: {{ event.event_date.strftime("%B %d, %Y at %H:%M") }}</p>
+    <p>Ticket Price: ${{ event.ticket_price }}</p>
+    <p>Organizer: {{ event.organizer }}</p>
+    <p>Category: {{ event.category }}</p>
+    <p>Posted by: <a href="{{ url_for('user_events', user_id=event.author.id) }}">{{ event.author.name }}</a></p>
+
+    {% if current_user.is_authenticated and current_user.id == event.user_id %}
+        <a href="{{ url_for('edit_event', event_id=event.id) }}">Edit</a> |
+        <a href="{{ url_for('delete_event', event_id=event.id) }}">Delete</a>
+    {% endif %}
+{% endblock %}

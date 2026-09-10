@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Edit Event</h2>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <p>{{ form.title.label }}<br>{{ form.title() }}</p>
+        <p>{{ form.short_description.label }}<br>{{ form.short_description() }}</p>
+        <p>{{ form.full_description.label }}<br>{{ form.full_description() }}</p>
+        <p>{{ form.location.label }}<br>{{ form.location() }}</p>
+        <p>{{ form.event_date.label }}<br>{{ form.event_date(type="datetime-local") }}</p>
+        <p>{{ form.ticket_price.label }}<br>{{ form.ticket_price() }}</p>
+        <p>{{ form.organizer.label }}<br>{{ form.organizer() }}</p>
+        <p>{{ form.category.label }}<br>{{ form.category() }}</p>
+
+        {{ form.submit() }}
+    </form>
+{% endblock %}
