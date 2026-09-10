@@ -5,13 +5,15 @@
     <p>Find and post local events.</p>
 
     {% for event in events %}
-        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+        <div class="event-card">
+            <span class="category-tag">{{ event.category }}</span>
             <h3>{{ event.title }}</h3>
-            <p>By <a href="{{ url_for('user_events', user_id=event.author.id) }}">{{ event.author.name }}</a></p>
-            <p>{{ event.event_date.strftime("%B %d, %Y at %H:%M") }}</p>
+            <div class="event-meta">
+                By <a href="{{ url_for('user_events', user_id=event.author.id) }}">{{ event.author.name }}</a>
+                — {{ event.event_date.strftime("%B %d, %Y at %H:%M") }}
+            </div>
             <p>{{ event.short_description }}</p>
-            <p>Category: {{ event.category }}</p>
-            <a href="{{ url_for('event_detail', event_id=event.id) }}">Read More</a>
+            <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn">Read More</a>
         </div>
     {% else %}
         <p>No events posted yet.</p>
