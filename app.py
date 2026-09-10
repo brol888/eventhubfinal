@@ -233,10 +233,10 @@ def not_found(error):
 def server_error(error):
     return render_template("500.html"), 500
 
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True, port=8000)
-
 
 
