@@ -187,6 +187,7 @@ def add_event():
 
 UPLOAD_FOLDER = os.path.join("static", "uploads")
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route("/profile")
 @login_required
